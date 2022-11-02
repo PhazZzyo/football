@@ -72,5 +72,5 @@ group :test do
 end
 
 gem "devise", "~> 4.8"
-
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 gem "calc_ruby_test_gem", "~> 0.2.2"
