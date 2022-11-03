@@ -1,9 +1,9 @@
 require 'faker'
 
-Match.destroy_all
-Prediction.destroy_all
-Team.destroy_all
-User.destroy_all
+# Match.destroy_all
+# Prediction.destroy_all
+# Team.destroy_all
+# User.destroy_all
 
 random = Random.new
 

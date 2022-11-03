@@ -10,50 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_30_181707) do
-    # These are extensions that must be enabled in order to support this database
-    enable_extension "plpgsql"
-    
-    create_table "matches", force: :cascade do |t|
-        t.datetime "date"
-        t.string "status"
-        t.bigint "home_team_id"
-        t.integer "home_team_score"
-        t.bigint "visitor_team_id"
-        t.integer "visitor_team_score"
-        t.datetime "created_at", null: false
-        t.datetime "updated_at", null: false
-    end
-    
-    create_table "predictions", force: :cascade do |t|
-        t.integer "home_team_score"
-        t.integer "visitor_team_score"
-        t.datetime "created_at", null: false
-        t.datetime "updated_at", null: false
-        t.bigint "match_id"
-        t.bigint "user_id"
-        t.index ["match_id"], name: "index_predictions_on_match_id"
-        t.index ["user_id"], name: "index_predictions_on_user_id"
-    end
-    
-    create_table "teams", force: :cascade do |t|
-        t.string "name"
-        t.integer "matches_won"
-        t.datetime "created_at", null: false
-        t.datetime "updated_at", null: false
-    end
-    
-    create_table "users", force: :cascade do |t|
-        t.string "first_name"
-        t.string "last_name"
-        t.integer "points"
-        t.datetime "created_at", null: false
-        t.datetime "updated_at", null: false
-        t.integer "age"
-    end
-    
-    add_foreign_key "matches", "teams", column: "home_team_id"
-    add_foreign_key "matches", "teams", column: "visitor_team_id"
-    add_foreign_key "predictions", "matches"
-    add_foreign_key "predictions", "users"
+ActiveRecord::Schema[7.0].define(version: 2022_11_03_185702) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "matches", force: :cascade do |t|
+    t.datetime "date"
+    t.string "status"
+    t.bigint "home_team_id"
+    t.integer "home_team_score"
+    t.bigint "visitor_team_id"
+    t.integer "visitor_team_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "predictions", force: :cascade do |t|
+    t.integer "home_team_score"
+    t.integer "visitor_team_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "match_id"
+    t.bigint "user_id"
+    t.index ["match_id"], name: "index_predictions_on_match_id"
+    t.index ["user_id"], name: "index_predictions_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.integer "matches_won"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "age"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "matches", "teams", column: "home_team_id"
+  add_foreign_key "matches", "teams", column: "visitor_team_id"
+  add_foreign_key "predictions", "matches"
+  add_foreign_key "predictions", "users"
 end

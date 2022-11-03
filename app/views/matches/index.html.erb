@@ -1,6 +1,43 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">  
 
 <h1>Matches</h1>
+
+<div class="d-grid gap-2 d-md-block">
+<%= link_to "New match", new_match_path %>
+</div>
+
+<div class="container">
+
+<table class="table table-hover table-bordered">
+   <thead class="table-light">
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Home team</th>
+      <th>Score</th>
+      <th>Visitor team</th>
+      <th>Score</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td><%= match.id %></td>
+        <td><%= match.date.to_date.to_formatted_s(:iso8601) %></td>
+        <td><%= match.home_team_id %></td>
+        <td><%= match.home_team_score %></td>
+        <td><%= match.visitor_team_id %></td>
+        <td><%= match.visitor_team_score %></td>
+        <td><%= match.status %></td>        
+        <td><%= link_to "Edit match", edit_match_path(match) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
 
 <div id="matches">
   <% @matches.each do |match| %>
@@ -11,4 +48,6 @@
   <% end %>
 </div>
 
-<%= link_to "New match", new_match_path %>
+</div>
+
+

@@ -1,11 +1,10 @@
-Rails.application.routes.draw do
-  resources :predictions
-  resources :matches
-  resources :teams
-  resources :users
+Rails.application.routes.draw do  
+  devise_for :users
+  resources :predictions, :matches, :teams, :users
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  get 'users/index'
-  root "users#index"
+  get 'home/about'
+  root "home#index"
 
   # Defines the root path route ("/")
   # root "articles#index"
