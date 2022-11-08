@@ -74,3 +74,5 @@ end
 gem "devise", "~> 4.8"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 gem "calc_ruby_test_gem", "~> 0.2.2"
+gem 'letter_opener', '~> 1.4', '>= 1.4.1'
+gem 'jwt', '~> 1.5', '>= 1.5.4'

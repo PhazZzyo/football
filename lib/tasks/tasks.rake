@@ -1,3 +1,10 @@
+namespace :match do
+    desc "Match create"
+    task :create => :environment do    
+        match = Match.create(date: '2022-11-01 14:23:50.420', status: 'ended', home_team_id: 1, home_team_score: 1, visitor_team_id: 3, visitor_team_score: 2)
+    end
+end
+
 namespace :prediction do
     desc "Prediction create"
     task :create => :environment do    

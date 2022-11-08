@@ -6,7 +6,7 @@
   <% @teams.each do |team| %>
     <%= render team %>
     <p>
-      <%= link_to "Show this team", team %>
+      <%= link_to team.name, team %>
     </p>
   <% end %>
 </div>

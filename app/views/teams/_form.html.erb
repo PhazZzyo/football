@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <%= form.label "Name" %>
+  <%= form.text_field :name %>
+  <%= form.label "Logo"%>
+  <%= form.file_field :logo %>
+  <%= form.label "Photo of players" %>
+  <%= form.file_field :photo %>
+
   <div>
     <%= form.submit %>
   </div>

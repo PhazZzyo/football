@@ -11,6 +11,25 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%=  'Match: ' %>
+    <%= select(:prediction, :match_id, Match.all.collect {|match| [ "#{match.home_team_id} vs #{match.visitor_team_id}", match.id ] }, { include_blank: false })  %>
+  </div>
+
+  <br>
+  
+  <div class="field">
+    <%= form.label "Home team score" %><br>
+    <%= form.number_field :home_team_score %>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <%= form.label "Visitor team score" %><br>
+    <%= form.number_field :visitor_team_score %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

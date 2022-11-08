@@ -2,11 +2,11 @@ class CreateMatches < ActiveRecord::Migration[7.0]
     def change
         create_table :matches do |t|
             t.datetime :date
-            t.string :status
+            t.integer :status, default: 2
             t.bigint :home_team_id
-            t.integer :home_team_score
+            t.integer :home_team_score, default: 0
             t.bigint :visitor_team_id
-            t.integer :visitor_team_score
+            t.integer :visitor_team_score, default: 0
             
             t.timestamps
         end

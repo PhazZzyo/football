@@ -2,35 +2,58 @@
   <% if match.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
+  
+    <ul>
+      <% match.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
 
-      <ul>
-        <% match.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
     </div>
   <% end %>
+    
+  <div class="field mb-3 col-sm-5">
+    <%= 'Date: ' %>
+    <%= date_field(:match, :date, {class: "form-select"}) %>
+  </div>
+    
+    <br>
 
-  <div class="field mb-3">
-    <%=  'Home team: ' %>
+  <div class="field mb-3 col-sm-2">
+    <%= 'Status: ' %>
+    <%= select_tag(:status, options_for_select([['Planned', 0], ['Live', 1], ['Ended', 2], ['Canceled', 3]], 2), {class: "form-select"}) %>
+  </div>
+    
+    <br>
+    
+  <div class="field mb-3 col-sm-5">
+    <%= 'Home team: ' %>
     <%= select(:match, :home_team_id, Team.all.collect {|team| [ team.name, team.id ] }, { include_blank: false }, {class: "form-select"}) %>
   </div>
 
   <br>
-  
-  <div class="field mb-3">
-    <%=  'Visitor team: ' %>
+
+  <div class="field mb-3 col-sm-2">
+    <%= form.label "Home team score:" %><br>
+    <%= form.number_field :home_team_score, class: "form-select" %>
+  </div>  
+    
+    <br>
+    
+  <div class="field mb-3 col-sm-5">
+    <%= 'Visitor team: ' %>
     <%= select(:match, :visitor_team_id, Team.all.collect {|team| [ team.name, team.id ] }, { include_blank: false }, {class: "form-select"}) %>
   </div>
 
   <br>
 
-  <div class="field mb-3">
-  <%=  'Date: ' %>
-  <%= date_field(:match, :date, {class: "form-select"}) %>
+  <div class="field mb-3 col-sm-2">
+    <%= form.label "Visitor team score:" %><br>
+    <%= form.number_field :visitor_team_score, class: "form-select" %>
   </div>
-
+    
   <div>
-    <%= form.submit class:'btn btn-secondary' %>    
-  </div>
-<% end %>
+    <%= form.submit class:'btn btn-secondary' %>
+    </div>
+  <% end %>
+    

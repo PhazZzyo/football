@@ -3,7 +3,7 @@ class PredictionsController < ApplicationController
 
   # GET /predictions or /predictions.json
   def index
-    @predictions = Prediction.all
+    @predictions = Prediction.where(user: current_user)
   end
 
   # GET /predictions/1 or /predictions/1.json
@@ -22,6 +22,7 @@ class PredictionsController < ApplicationController
   # POST /predictions or /predictions.json
   def create
     @prediction = Prediction.new(prediction_params)
+    @prediction.user = current_user
 
     respond_to do |format|
       if @prediction.save
@@ -65,6 +66,10 @@ class PredictionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def prediction_params
-      params.fetch(:prediction, {})
+      params.fetch(:prediction, {}).permit(
+        :match_id,
+        :home_team_score,
+        :visitor_team_score
+        )
     end
 end

@@ -1,6 +1,24 @@
-<p style="color: green"><%= notice %></p>
+<h1>Users scoreboard</h1>
 
-<h1>Users</h1>
+<h2>Current leader is "<%= User.where(points: User.maximum("points")).pluck(:email).join() %>" with <%= User.maximum("points") %> points!</h2>
+
+<table class="table table-hover table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Email</th>
+        <th>Points</th>        
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.points %></td>
+        </tr>
+      <% end %>
+      </tbody>
+  </table>
 
 <div id="users">
   <% @users.each do |user| %>

@@ -1,6 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @team %>
+  <h1 class="display-4">
+    <%= @team.name %>
+  </h1>
+
+  <p class="lead">
+    <%= 'Matches won: ' %>
+    <%= @team.matches_won %>
+    <br>
+    <% if @team.logo.attached? %>
+    <%= 'Teams logo: ' %>
+    <br>
+    <%= image_tag @team.logo.attachment, :size => "100x100" %>
+    <% end %>
+    <br>
+    <% if @team.photo.attached? %>
+    <%= 'Teams photo: ' %>
+    <br>
+    <%= image_tag @team.photo.attachment %>
+    <% end %>
+  </p>
 
 <div>
   <%= link_to "Edit this team", edit_team_path(@team) %> |
